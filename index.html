@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wave - Музыкальный плеер</title>
+    <link rel="icon" href="image/logo.png" type="image/png">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/rain.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Боковая панель навигации -->
+        <nav class="sidebar">
+            <div class="logo">
+                <img src="image/logo.png" alt="Wave Logo">
+                <h1>Wave</h1>
+            </div>
+            <ul class="nav-links">
+                <li class="active"><a href="#"><i class="fas fa-home"></i> Главная</a></li>
+                <li><a href="#"><i class="fas fa-search"></i> Поиск</a></li>
+                <li><a href="#"><i class="fas fa-heart"></i> Избранное</a></li>
+            </ul>
+        </nav>
+
+        <!-- Основное содержимое -->
+        <main class="content">
+            <!-- Эффект дождя -->
+            <div class="rain-container">
+                <div class="rain-effect"></div>
+            </div>
+            
+            <header>
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Поиск треков, исполнителей, альбомов...">
+                </div>
+                <div class="user-menu">
+                    <div id="user-profile" class="user-profile">
+                        <img src="image/user.svg" alt="User Profile" id="user-avatar">
+                        <span id="username">Гость</span>
+                    </div>
+                    <div class="user-dropdown">
+                        <a href="#" id="profile-button" style="display: none;">Профиль</a>
+                        <a href="#" id="login-button">Войти</a>
+                        <a href="#" id="register-button">Регистрация</a>
+                        <a href="#" id="logout-button" style="display: none;">Выйти</a>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Пустая главная страница -->
+        </main>
+    </div>
+    
+    <div class="container">
+        <!-- Оверлей для обязательной авторизации -->
+        <div id="auth-overlay" class="auth-overlay">
+            <div class="auth-message">
+                <h2>Добро пожаловать в Wave</h2>
+                <p>Для использования музыкального плеера необходимо войти в аккаунт или зарегистрироваться</p>
+                <div class="auth-buttons">
+                    <button id="overlay-login-btn" class="btn">Войти</button>
+                    <button id="overlay-register-btn" class="btn">Регистрация</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Основное содержимое приложения -->
+        <div id="app-content" class="app-content">
+            <!-- Плеер внизу -->
+            <div class="player">
+                <div class="track-info">
+                    <img src="https://via.placeholder.com/56" alt="Current Track" class="current-track-img">
+                    <div class="track-details">
+                        <h4>Название трека</h4>
+                        <p>Исполнитель</p>
+                    </div>
+                    <i class="far fa-heart"></i>
+                </div>
+                <div class="player-controls">
+                    <div class="control-buttons">
+                        <i class="fas fa-random"></i>
+                        <i class="fas fa-step-backward"></i>
+                        <div class="play-pause">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <i class="fas fa-step-forward"></i>
+                        <i class="fas fa-redo"></i>
+                    </div>
+                    <div class="progress-bar">
+                        <span class="current-time">0:00</span>
+                        <div class="progress-container">
+                            <div class="progress"></div>
+                        </div>
+                        <span class="total-time">3:45</span>
+                    </div>
+                </div>
+                <div class="volume-controls">
+                    <i class="fas fa-list"></i>
+                    <i class="fas fa-volume-up"></i>
+                    <div class="volume-slider">
+                        <div class="volume-progress"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно для входа -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Вход в аккаунт</h2>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="login-username">Ник</label>
+                        <input type="text" id="login-username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Пароль</label>
+                        <input type="password" id="login-password" name="password" required>
+                    </div>
+                    <div class="form-error" id="login-error"></div>
+                    <button type="submit" class="form-button">Войти</button>
+                </form>
+                <div class="modal-footer">
+                    <p>Нет аккаунта? <a href="#" id="show-register">Зарегистрироваться</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно для регистрации -->
+    <div id="register-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Регистрация</h2>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="register-form">
+                    <div class="form-group">
+                        <label for="register-username">Ник</label>
+                        <input type="text" id="register-username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Пол</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="gender" value="male" checked>
+                                <span>Мужской</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="gender" value="female">
+                                <span>Женский</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">Пароль</label>
+                        <input type="password" id="register-password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-confirm-password">Подтверждение пароля</label>
+                        <input type="password" id="register-confirm-password" name="confirm_password" required>
+                    </div>
+                    <div class="form-error" id="register-error"></div>
+                    <button type="submit" class="form-button">Создать аккаунт</button>
+                </form>
+                <div class="modal-footer">
+                    <p>Уже есть аккаунт? <a href="#" id="show-login">Войти</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно для профиля пользователя -->
+    <div id="profile-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Профиль пользователя</h2>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="profile-info">
+                    <div class="profile-avatar">
+                        <img src="image/user.svg" alt="Avatar" id="profile-avatar">
+                        <div class="avatar-upload">
+                            <input type="file" id="avatar-file" accept="image/jpeg, image/png, image/gif, image/webp">
+                            <button id="upload-avatar-btn">Изменить аватар</button>
+                        </div>
+                    </div>
+                    <div class="profile-details">
+                        <div class="profile-row">
+                            <label>Ник:</label>
+                            <span id="profile-username"></span>
+                            <button id="edit-username-btn" class="icon-button">
+                                <span class="material-icons">Сменить</span>
+                            </button>
+                        </div>
+                        <div class="profile-row">
+                            <label>Пол:</label>
+                            <span id="profile-gender"></span>
+                        </div>
+                        <div class="profile-row">
+                            <label>Дата регистрации:</label>
+                            <span id="profile-created"></span>
+                        </div>
+                        <div class="profile-row">
+                            <label>ID:</label>
+                            <span id="profile-id"></span>
+                        </div>
+                        <div class="profile-row">
+                            <label>Статус:</label>
+                            <span id="profile-status"></span>
+                            <button id="edit-status-btn" class="icon-button">
+                                <span class="material-icons">Сменить</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно выбора статуса -->
+    <div id="status-select-modal" class="status-select-modal">
+        <div class="status-select-content">
+            <div class="status-select-header">
+                <h3>Изменение статуса</h3>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="status-code-input">
+                <label for="status-code">Введите код статуса:</label>
+                <input type="text" id="status-code" placeholder="Введите секретный код">
+            </div>
+            <div class="status-actions">
+                <button class="cancel-btn">Отмена</button>
+                <button class="save-btn">Сохранить</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Модальное окно смены никнейма -->
+    <div id="username-change-modal" class="status-select-modal">
+        <div class="status-select-content">
+            <div class="status-select-header">
+                <h3>Изменение ника</h3>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="status-code-input">
+                <label for="new-username">Введите новый никнейм:</label>
+                <input type="text" id="new-username" placeholder="Введите новый ник">
+            </div>
+            <div class="status-actions">
+                <button class="cancel-btn">Отмена</button>
+                <button class="save-btn">Сохранить</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/player.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/rain.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

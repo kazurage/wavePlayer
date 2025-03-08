@@ -1,0 +1,7 @@
+{
+  "endpoint": "mysql.db.bot-hosting.net:3306",
+  "connections_from": "%",
+  "username": "u320203_Jak17KvNbL",
+  "password": "m=hslDqqkv6n21i+^O97PZP+",
+  "jdbc_connection_string": "jdbc:mysql://u320203_Jak17KvNbL:m%3DhslDqqkv6n21i%2B%5EO97PZP%2B@mysql.db.bot-hosting.net:3306/s320203_wave"
+}

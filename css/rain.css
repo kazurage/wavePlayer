@@ -1,0 +1,147 @@
+/* Стили для эффекта дождя */
+.rain-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.rain-effect {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+/* Стили для капель дождя */
+.raindrop {
+    position: absolute;
+    background: linear-gradient(to bottom, rgba(157, 139, 176, 0), rgba(157, 139, 176, 0.6));
+    border-radius: 50% 50% 0 0;
+    pointer-events: none;
+    opacity: 0.7;
+    transform-origin: center bottom;
+}
+
+/* Стили для световых эффектов */
+.glow {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(157, 139, 176, 0.3) 0%, rgba(157, 139, 176, 0) 70%);
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+}
+
+/* Стили для брызг */
+.splash {
+    position: absolute;
+    width: 6px;
+    height: 2px;
+    background-color: rgba(157, 139, 176, 0.6);
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0;
+}
+
+/* Анимация мерцания */
+@keyframes flicker {
+    0% { opacity: 0.3; }
+    25% { opacity: 0.5; }
+    50% { opacity: 0.7; }
+    75% { opacity: 0.5; }
+    100% { opacity: 0.3; }
+}
+
+/* Анимация падения */
+@keyframes fall {
+    0% { transform: translateY(-200px) scale(0.1); opacity: 0; }
+    25% { opacity: 0.8; }
+    50% { opacity: 0.9; }
+    75% { opacity: 0.8; }
+    100% { transform: translateY(calc(100vh + 100px)) scale(1); opacity: 0; }
+}
+
+/* Анимация брызг */
+@keyframes splash {
+    0% { transform: scale(0); opacity: 0.7; }
+    80% { transform: scale(1); opacity: 0.5; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* Анимация свечения */
+@keyframes glow {
+    0% { transform: scale(0.5); opacity: 0.1; }
+    50% { transform: scale(1); opacity: 0.3; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* Стили для эффекта отражения */
+.reflection {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20%;
+    background: linear-gradient(to bottom, rgba(25, 25, 25, 0.5), rgba(25, 25, 25, 0));
+    opacity: 0.2;
+    pointer-events: none;
+    backdrop-filter: blur(2px);
+    z-index: 2;
+}
+
+/* Стили для создания эффекта закругленных капель */
+.raindrop::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 40%;
+    top: 0;
+    background: linear-gradient(to bottom, rgba(192, 192, 192, 0.5), rgba(192, 192, 192, 0));
+    border-radius: 50% 50% 0 0;
+    opacity: 0.3;
+}
+
+/* Стили для создания эффекта волн на поверхности */
+.ripple {
+    position: absolute;
+    border: 1px solid rgba(157, 139, 176, 0.5);
+    border-radius: 50%;
+    transform: scale(0);
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Анимация ряби на поверхности */
+@keyframes ripple {
+    0% { transform: scale(0); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 0; }
+}
+
+/* Медиа-запрос для оптимизации на мобильных устройствах */
+@media (max-width: 768px) {
+    .rain-container {
+        opacity: 0.5; /* Уменьшение заметности эффекта на мобильных устройствах */
+    }
+}
+
+/* Добавление градиентной подсветки контента */
+.content {
+    position: relative;
+}
+
+.content::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(157, 139, 176, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+    pointer-events: none;
+    z-index: 0;
+}

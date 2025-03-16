@@ -28,7 +28,7 @@ const createPool = async () => {
         port: parseInt(port),
         user: dbConfig.username,
         password: dbConfig.password,
-        database: 's320203_wave',
+        database: dbConfig.database,
         waitForConnections: true,
         connectionLimit: 10,
         queueLimit: 0

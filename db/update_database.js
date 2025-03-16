@@ -22,7 +22,7 @@ async function updateDatabase() {
             port: config.endpoint.split(':')[1] || 3306,
             user: config.username,
             password: config.password,
-            database: 's320203_wave' // Извлечено из JDBC строки
+            database: 's155503_wave' // Извлечено из JDBC строки
         });
         
         console.log('Соединение с базой данных установлено');

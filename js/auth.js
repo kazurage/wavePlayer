@@ -384,7 +384,7 @@ class AuthSystem {
         this.registerModal.style.display = 'none';
         
         // Показываем окно входа
-        this.loginModal.style.display = 'block';
+        this.loginModal.style.display = 'flex';
         document.getElementById('login-username').focus();
     }
     
@@ -405,7 +405,7 @@ class AuthSystem {
         this.loginModal.style.display = 'none';
         
         // Показываем окно регистрации
-        this.registerModal.style.display = 'block';
+        this.registerModal.style.display = 'flex';
         document.getElementById('register-username').focus();
     }
     
@@ -440,7 +440,7 @@ class AuthSystem {
         
         if (this.currentUser.status === 'admin_wave_owo') {
             statusText = 'Администратор сайта';
-        } else if (this.currentUser.status === 'auhor_wave_owo') {
+        } else if (this.currentUser.status === 'author_wave_owo') {
             statusText = 'Музыкальный автор';
         }
         
@@ -897,7 +897,7 @@ class AuthSystem {
         
         if (this.currentUser.status === 'admin_wave_owo') {
             statusText = 'Администратор сайта';
-        } else if (this.currentUser.status === 'auhor_wave_owo') {
+        } else if (this.currentUser.status === 'author_wave_owo') {
             statusText = 'Музыкальный автор';
         }
         
